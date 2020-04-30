@@ -487,7 +487,7 @@ function DpsTool() {
 	return (
 		<div className="grid-container">
 			<div className="title">
-				<h1>OSRS DPS Calculator</h1>
+				<h1>OSRS DPS Calculator!</h1>
 			</div>
 
 			<div className="second-row-container">
