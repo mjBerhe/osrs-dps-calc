@@ -134,7 +134,7 @@ export const SelectSpell = React.memo(({ userStats, setUserStats }) => {
 				maxHit: 10,
 				imgNumber: 6,
 				spellbook: 'standard',
-				element: 'water',
+				//element: 'water',
 				grade: 'bolt',
 			},
 			{
@@ -287,7 +287,7 @@ export const SelectSpell = React.memo(({ userStats, setUserStats }) => {
 				value: 30,
 				maxHit: 13,
 				imgNumber: 27,
-				spellbook: 'ancients',
+				spellbook: 'standard',
 			},
 			{
 				label: 'Shadow Rush',
@@ -416,7 +416,6 @@ export const SelectSpell = React.memo(({ userStats, setUserStats }) => {
 	const handleChange = spell => {
 		// if a spell has been chosen
 		if (spell.value) {
-			// setPic(spellImages[spell.imgNumber]);
 			setUserStats(prevStats => ({
 				...prevStats,
 				isMagic: true,

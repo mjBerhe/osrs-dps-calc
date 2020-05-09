@@ -296,6 +296,7 @@ export default function DpsTool() {
 					})
 					setMonstersList(lists[11])
 				})
+				.catch(err => console.log(err))
 		}
 		fetchData();
 	}, []);
@@ -412,7 +413,7 @@ export default function DpsTool() {
 			accuracy: accuracy2,
 		});
 
-		console.log(equippedGear.weapon)
+		//console.log(equippedGear.weapon)
 
 	}, [userStats, userStats2, currentMonster])
 
@@ -434,6 +435,8 @@ export default function DpsTool() {
 
 		const dps2 = (accuracy2 * (maxHit2/2)) / (attSpeed2*0.6);
 		setDps2(dps2);
+
+		console.log(maxHit, accuracy, attSpeed, userStats.chosenSpell, equippedGear.weapon)
 
 	}, [finalOutput, finalOutput2])
 

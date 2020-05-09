@@ -5,6 +5,8 @@ export function calcAttSpeed(equippedGear, userStats) {
 		if (userStats.chosenSpell.spellbook === 'standard' && equippedGear.weapon) {
 			if (equippedGear.weapon.id === 24423) {
 				return 4;
+			} else {
+				return 5;
 			}
 		} else {
 			return 5;
@@ -15,8 +17,8 @@ export function calcAttSpeed(equippedGear, userStats) {
 		} else {
 			return equippedGear.weapon.attSpeed;
 		}
-	} else {
-		return null;
+	 } else {
+	 	return null;
 	}
 
 
