@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import useHover from '../hooks/useHover';
 import DWH from '../images/Misc/DWH.png';
 

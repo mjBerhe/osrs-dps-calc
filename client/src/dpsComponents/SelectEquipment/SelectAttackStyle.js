@@ -1,4 +1,3 @@
-import placeholder from "../../images/Equipment/SpellSlotEmpty.png";
 import default_style from '../../images/WeaponStyles/default_style.png';
 import axes1 from "../../images/WeaponStyles/axes/axes1.png";
 import axes2 from "../../images/WeaponStyles/axes/axes2.png";
@@ -69,6 +68,9 @@ import two_handed_swords1 from "../../images/WeaponStyles/two_handed_swords/two_
 import two_handed_swords2 from "../../images/WeaponStyles/two_handed_swords/two_handed_swords2.png";
 import two_handed_swords3 from "../../images/WeaponStyles/two_handed_swords/two_handed_swords3.png";
 import two_handed_swords4 from "../../images/WeaponStyles/two_handed_swords/two_handed_swords4.png";
+import unarmed1 from "../../images/WeaponStyles/unarmed/unarmed1.png"
+import unarmed2 from "../../images/WeaponStyles/unarmed/unarmed2.png"
+import unarmed3 from "../../images/WeaponStyles/unarmed/unarmed3.png"
 import whips1 from "../../images/WeaponStyles/whips/whips1.png";
 import whips2 from "../../images/WeaponStyles/whips/whips2.png";
 import whips3 from "../../images/WeaponStyles/whips/whips3.png";
@@ -77,7 +79,6 @@ import React, { useState, useEffect } from 'react';
 import { Select } from 'react-select-virtualized';
 import { customStyles1 } from "./Styles/SelectStyle1";
 import useHover from '../../hooks/useHover';
-const fetch = require('node-fetch');
 
 export const SelectAttackStyle = ({ equippedGear, userStats, setUserStats }) => {
 
@@ -113,10 +114,11 @@ export const SelectAttackStyle = ({ equippedGear, userStats, setUserStats }) => 
 		staves: [staves1, staves2, staves3, staves4, staves5],
 		thrown_weapons: [thrown_weapons1, thrown_weapons2, thrown_weapons3],
 		'two-handed_swords': [two_handed_swords1, two_handed_swords2, two_handed_swords3, two_handed_swords4],
+		unarmed: [unarmed1, unarmed2, unarmed3],
 		whips: [whips1, whips2, whips3],
 	}
 
-	const meleeWepTypes = ['axes', 'blunt_weapons', 'bulwarks', 'claws', 'halberds', 'pickaxes', 'polearms', 'scythes', 'slashing_swords', 'spears', 'spiked_weapons', 'stabbing_swords', 'two-handed_swords', 'whips'];
+	const meleeWepTypes = ['axes', 'blunt_weapons', 'bulwarks', 'claws', 'halberds', 'pickaxes', 'polearms', 'scythes', 'slashing_swords', 'spears', 'spiked_weapons', 'stabbing_swords', 'two-handed_swords', 'unarmed', 'whips'];
 	const rangedWepTypes = ['bows', 'crossbows', 'thrown_weapons', 'chinchompas'];
 	const magicWepTypes = ['staves', 'bladed_staves', 'trident-class_weapons'];
 
@@ -173,6 +175,12 @@ export const SelectAttackStyle = ({ equippedGear, userStats, setUserStats }) => 
 					...prevSelect,
 					options: options,
 				}));
+			// should occur when armor set is cleared
+			} else {
+				setSelect(prevSelect => ({
+					...prevSelect,
+					options: [],
+				}))
 			}
 		}
 		loadOptions();

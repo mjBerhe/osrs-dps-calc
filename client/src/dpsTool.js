@@ -52,7 +52,7 @@ import { SelectRing } from './dpsComponents/SelectEquipment/SelectRing';
 import { SelectAmmo } from './dpsComponents/SelectEquipment/SelectAmmo';
 const fetch = require('node-fetch');
 
-function DpsTool() {
+export default function DpsTool() {
 
 	// equipmentAPI is an array of routes for each piece of equipement and monsters
 	const equipmentAPI = [
@@ -412,7 +412,7 @@ function DpsTool() {
 			accuracy: accuracy2,
 		});
 
-		//console.log(userStats.isMagic, userStats.isRange)
+		console.log(equippedGear.weapon)
 
 	}, [userStats, userStats2, currentMonster])
 
@@ -487,7 +487,7 @@ function DpsTool() {
 	return (
 		<div className="grid-container">
 			<div className="title">
-				<h1>OSRS DPS Calculator!</h1>
+				<h1>OSRS DPS Calculator</h1>
 			</div>
 
 			<div className="second-row-container">
@@ -499,7 +499,7 @@ function DpsTool() {
 
 				<div className="monster-and-outputs-container">
 					<h2 className="final-title">Armor Set 1 vs Armor Set 2</h2>
-					<OutputComparison finalOutput={finalOutput} finalOutput2={finalOutput2} dps={dps} dps2={dps2}/>
+					<OutputComparison finalOutput={finalOutput} finalOutput2={finalOutput2} dps={dps} dps2={dps2} equippedGear={equippedGear} equippedGear2={equippedGear2} userStats={userStats} userStats2={userStats2} currentMonster={currentMonster}/>
 					<SelectMonster monstersList={monstersList} setCurrentMonster={setCurrentMonster} setCurrentMonsterCopy={setCurrentMonsterCopy}/>
 					<div className="misc-row">
 						<SlayerCheck userStats={userStats} setUserStats={setUserStats} userStats2={userStats2} setUserStats2={setUserStats2}/>
@@ -516,9 +516,9 @@ function DpsTool() {
 				<div className="buttons-section">
 					<CopySet setEquippedGearCopy={setEquippedGearCopy} equippedGear={equippedGear}/>
 					<PasteSet equippedGearCopy={equippedGearCopy} setEquippedGear={setEquippedGear}/>
-					<ClearSet setEquippedGear={setEquippedGear} setUserStats={setUserStats}/>
+					<ClearSet setEquippedGear={setEquippedGear} setUserStats={setUserStats} handleEquipmentChange={handleEquipmentChange} equippedGear={equippedGear}/>
 				</div>
-				<SelectWeapon handleEquipmentChange={handleEquipmentChange} equipmentList={equipmentList} equippedGear={equippedGear}/>
+				<SelectWeapon handleEquipmentChange={handleEquipmentChange} equipmentList={equipmentList} equippedGear={equippedGear} setEquippedGear={setEquippedGear}/>
 				<SelectHelm handleEquipmentChange={handleEquipmentChange}  equipmentList={equipmentList} equippedGear={equippedGear}/>
 				<SelectShield handleEquipmentChange={handleEquipmentChange} equipmentList={equipmentList} equippedGear={equippedGear}/>
 				<SelectBody handleEquipmentChange={handleEquipmentChange} equipmentList={equipmentList} equippedGear={equippedGear}/>
@@ -542,7 +542,7 @@ function DpsTool() {
 					<ClearSet setEquippedGear={setEquippedGear2} setUserStats={setUserStats2}/>
 				</div>
 				<SelectWeapon handleEquipmentChange={handleEquipmentChange2} equipmentList={equipmentList} equippedGear={equippedGear2}/>
-				<SelectHelm handleEquipmentChange={handleEquipmentChange2}  equipmentList={equipmentList} equippedGear={equippedGear2}/>
+				<SelectHelm handleEquipmentChange={handleEquipmentChange2} equipmentList={equipmentList} equippedGear={equippedGear2}/>
 				<SelectShield handleEquipmentChange={handleEquipmentChange2} equipmentList={equipmentList} equippedGear={equippedGear2}/>
 				<SelectBody handleEquipmentChange={handleEquipmentChange2} equipmentList={equipmentList} equippedGear={equippedGear2}/>
 				<SelectLeg handleEquipmentChange={handleEquipmentChange2} equipmentList={equipmentList} equippedGear={equippedGear2}/>
@@ -556,8 +556,6 @@ function DpsTool() {
 		</div>
 	)
 }
-
-export default DpsTool;
 
 // db.monsters.update({ id: 2044 },
 // {
@@ -574,3 +572,45 @@ export default DpsTool;
 // 	id: 20554
 // })
 
+// db.weapons.insert({
+// 	"stats": {
+//             "attStab": 0,
+//             "attSlash": 0,
+//             "attCrush": 0,
+//             "attMagic": 0,
+//             "attRanged": 0,
+//             "defStab": 0,
+//             "defSlash": 0,
+//             "defCrush": 0,
+//             "defMagic": 0,
+//             "defRanged": 0,
+//             "strBonus": 0,
+//             "rngStrBonus": 0,
+//             "magBonus": 0,
+//             "prayBonus": 0,
+//             "slot": "weapon"
+//         },
+//         "stances": {
+//             "stance0": {
+//                 "cmbStyle": "punch",
+//                 "attType": "crush",
+//                 "attStyle": "accurate"
+//             },
+//             "stance1": {
+//                 "cmbStyle": "kick",
+//                 "attType": "crush",
+//                 "attStyle": "aggressive"
+//             },
+//             "stance2": {
+//                 "cmbStyle": "block",
+//                 "attType": "crush",
+//                 "attStyle": "defensive"
+//             }
+//         },
+//         "id": 100000,
+//         "name": "None",
+//         "equipableByPlayer": true,
+//         "equipableWeapon": true,
+//         "attSpeed": 4,
+//         "wepType": "unarmed",
+// })

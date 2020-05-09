@@ -5,7 +5,7 @@ import { customStyles1 } from "./Styles/SelectStyle1";
 import useHover from '../../hooks/useHover';
 const fetch = require('node-fetch');
 
-export const SelectWeapon = React.memo(({ handleEquipmentChange, equipmentList, equippedGear }) => {
+export const SelectWeapon = React.memo(({ handleEquipmentChange, equipmentList, equippedGear, setEquippedGear }) => {
 
 	// NEED equipmentList for loading weapon options (contains names + id's)
 	// NEED handleEquipmentChange for equippingGear after a select
@@ -21,16 +21,14 @@ export const SelectWeapon = React.memo(({ handleEquipmentChange, equipmentList, 
 
 	const [weaponPic, setWeaponPic] = useState(weaponImg);
 
-	const meleeWepTypes = ['stabbing_swords', 'axes', 'pickaxes', 'spiked_weapons', 'slashing_swords', 'blunt_weapons', 'two-handed_swords', 'halberds', 'spears', 'claws', 'whips', 'scythes'];
-	const rangedWepTypes = ['bows', 'crossbows', 'thrown_weapons', 'chinchompas'];
-	const magicWepTypes = ['staves', 'bladed_staves', 'trident-class_weapons'];
-
-	const rangedAttStyles = ['accurate', 'rapid', 'longrange', 'short fuse', 'medium fuse', 'long fuse'];
-
 	// for loading weapon options in state (should only be triggered once)
 	useEffect(() => {
 		const loadOptions = () => {
 			const options = [];
+			options.push({
+				label: 'None',
+				value: null,
+			})
 			if (equipmentList.weapon) {
 				equipmentList.weapon.forEach((weapon) => {
 					options.push({
@@ -48,6 +46,13 @@ export const SelectWeapon = React.memo(({ handleEquipmentChange, equipmentList, 
 		loadOptions();
 	}, [equipmentList.weapon])
 
+	// equipping "None" in weapon slot when the weapon list loads
+	useEffect(() => {
+		if (equipmentList.weapon) {
+			handleEquipmentChange('weapon', 100000);
+		}
+	}, [equipmentList.weapon])
+
 	// for fetching image after every select or if equipped weapon changes somehow
 	useEffect(() => {
 		async function fetchImage() {
@@ -55,9 +60,13 @@ export const SelectWeapon = React.memo(({ handleEquipmentChange, equipmentList, 
 			const url = "https://raw.githubusercontent.com/osrsbox/osrsbox-db/master/docs/items-icons/";
 			let id;
 			if (equippedGear.weapon) {
-				id = equippedGear.weapon.id;
-				const response = await fetch(`${proxyUrl}${url}${id}.png`);
-				setWeaponPic(response.url)
+				if (equippedGear.weapon.id === 100000) {
+					setWeaponPic(weaponImg);
+				} else {
+					id = equippedGear.weapon.id;
+					const response = await fetch(`${proxyUrl}${url}${id}.png`);
+					setWeaponPic(response.url)
+				}
 			} else {
 				setWeaponPic(weaponImg)
 			}
@@ -67,7 +76,11 @@ export const SelectWeapon = React.memo(({ handleEquipmentChange, equipmentList, 
 
 	const handleWeaponChange = weapon => {
 		if (weapon) {
-			handleEquipmentChange('weapon', weapon.value);
+			if (!weapon.value) {
+				handleEquipmentChange('weapon', 100000);
+			} else {
+				handleEquipmentChange('weapon', weapon.value);
+			}
 		}
 	}
 
