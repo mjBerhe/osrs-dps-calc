@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { Select } from 'react-select-virtualized';
+import { customStyles1 } from "./Styles/SelectStyle1";
+import useHover from "../../hooks/useHover";
+
 import defaultSpell from '../../images/Equipment/SpellSlot.PNG';
 import WindStrike from '../../images/SpellsFinal/WindStrike.png';
 import WaterStrike from '../../images/SpellsFinal/WaterStrike.png';
@@ -42,9 +46,6 @@ import SmokeBarrage from '../../images/SpellsFinal/SmokeBarrage.png';
 import ShadowBarrage from '../../images/SpellsFinal/ShadowBarrage.png';
 import BloodBarrage from '../../images/SpellsFinal/BloodBarrage.png';
 import IceBarrage from '../../images/SpellsFinal/IceBarrage.png';
-
-import { Select } from 'react-select-virtualized';
-import { customStyles1 } from "./Styles/SelectStyle1";
 
 export const SelectSpell = React.memo(({ userStats, setUserStats }) => {
 
@@ -462,9 +463,16 @@ export const SelectSpell = React.memo(({ userStats, setUserStats }) => {
 		}))
 	}
 
+	const [ref, hovered] = useHover();
+
 	return (
 		<div className="spell-slot">
-			<img src={pic} alt="selected spell"/>
+			<img src={pic} alt="selected spell" ref={ref}/>
+			{hovered && userStats.chosenSpell &&
+				<div className="spell-hover">
+					<h5>{userStats.chosenSpell.label}</h5>
+				</div>
+			}
 			<Select
 				className="spell-select"
 				placeholder="Search for Spell"

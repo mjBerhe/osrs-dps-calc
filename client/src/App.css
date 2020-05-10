@@ -621,6 +621,15 @@ body {
     height: 42px;
 }
 
+.spell-hover {
+    position: absolute;
+    background: white;
+    opacity: 0.6;
+    width: 110px;
+    margin: -35px 0 0 0;
+    border-radius: 4px;
+}
+
 .weapon-slot {
     /*background: yellow;*/
     grid-column: 3/4;
@@ -663,8 +672,8 @@ body {
     position: absolute;
     background: white;
     opacity: 0.6;
-    width: 120px;
-    margin: -28px 0 0 0;
+    width: 115px;
+    margin: -30px 0 0 0;
     border-radius: 4px;
 }
 

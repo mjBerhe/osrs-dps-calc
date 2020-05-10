@@ -44,13 +44,26 @@ mongoose
 	.catch(err => console.log(err));
 
 if (process.env.NODE_ENV === 'production') {
-	app.use(express.static('client/build'));
-
-	app.get('*', (req, res) => {
-		res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+	app.use((req, res, next) => {
+		if (req.header('x-forwarded-proto') !== 'https') {
+			res.redirect(`https://${req.hostname}${req.url}`)
+		} else {
+			next()
+		}
 	})
+
+	// app.use(express.static('client/build'));
+
+	// app.get('*', (req, res) => {
+	// 	res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+	// })
 }
 
+app.use(express.static('client/build'));
+
+app.get('*', (req, res) => {
+	res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+})
 
 
 

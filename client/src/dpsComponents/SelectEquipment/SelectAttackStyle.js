@@ -230,6 +230,7 @@ export const SelectAttackStyle = ({ equippedGear, userStats, setUserStats }) => 
 						attStyle: option.attStyle,
 						isRange: true,
 						isMagic: false,
+						chosenSpell: null,
 					}));
 				}
 			// else, should be melee
@@ -240,6 +241,7 @@ export const SelectAttackStyle = ({ equippedGear, userStats, setUserStats }) => 
 					attStyle: option.attStyle,
 					isMagic: false,
 					isRange: false,
+					chosenSpell: null,
 				}));
 			}
 

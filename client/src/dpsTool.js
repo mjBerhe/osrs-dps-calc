@@ -571,10 +571,6 @@ export default function DpsTool() {
 // 	name: 'Zulrah (green)'
 // })
 
-// db.weapons.remove({
-// 	id: 20554
-// })
-
 // db.weapons.insert({
 // 	"stats": {
 //             "attStab": 0,
