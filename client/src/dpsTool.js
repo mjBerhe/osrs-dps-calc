@@ -462,7 +462,7 @@ export default function DpsTool() {
 		const equipmentType = equipType;
 
 		equipmentList[equipmentType].forEach((item) => {
-			if (item.id == itemID) {
+			if (item.id === itemID) {
 				setEquippedGear((equippedGear) => ({
 					...equippedGear,
 					[equipmentType]: item,
@@ -476,7 +476,7 @@ export default function DpsTool() {
 		const equipmentType = equipType;
 
 		equipmentList[equipmentType].forEach((item) => {
-			if (item.id == itemID) {
+			if (item.id === itemID) {
 				setEquippedGear2((equippedGear2) => ({
 					...equippedGear2,
 					[equipmentType]: item,
@@ -521,7 +521,7 @@ export default function DpsTool() {
 					<PasteSet equippedGearCopy={equippedGearCopy} setEquippedGear={setEquippedGear}/>
 					<ClearSet setEquippedGear={setEquippedGear} setUserStats={setUserStats} handleEquipmentChange={handleEquipmentChange} equippedGear={equippedGear}/>
 				</div>
-				<SelectWeapon handleEquipmentChange={handleEquipmentChange} equipmentList={equipmentList} equippedGear={equippedGear} setEquippedGear={setEquippedGear}/>
+				<SelectWeapon handleEquipmentChange={handleEquipmentChange} equipmentList={equipmentList} equippedGear={equippedGear}/>
 				<SelectHelm handleEquipmentChange={handleEquipmentChange}  equipmentList={equipmentList} equippedGear={equippedGear}/>
 				<SelectShield handleEquipmentChange={handleEquipmentChange} equipmentList={equipmentList} equippedGear={equippedGear}/>
 				<SelectBody handleEquipmentChange={handleEquipmentChange} equipmentList={equipmentList} equippedGear={equippedGear}/>
@@ -542,7 +542,7 @@ export default function DpsTool() {
 				<div className="buttons-section">
 					<CopySet setEquippedGearCopy={setEquippedGearCopy} equippedGear={equippedGear2}/>
 					<PasteSet equippedGearCopy={equippedGearCopy} setEquippedGear={setEquippedGear2}/>
-					<ClearSet setEquippedGear={setEquippedGear2} setUserStats={setUserStats2}/>
+					<ClearSet setEquippedGear={setEquippedGear2} setUserStats={setUserStats2} handleEquipmentChange={handleEquipmentChange2} equippedGear={equippedGear2}/>
 				</div>
 				<SelectWeapon handleEquipmentChange={handleEquipmentChange2} equipmentList={equipmentList} equippedGear={equippedGear2}/>
 				<SelectHelm handleEquipmentChange={handleEquipmentChange2} equipmentList={equipmentList} equippedGear={equippedGear2}/>

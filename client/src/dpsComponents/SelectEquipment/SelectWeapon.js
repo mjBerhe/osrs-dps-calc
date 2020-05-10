@@ -5,7 +5,7 @@ import { customStyles1 } from "./Styles/SelectStyle1";
 import useHover from '../../hooks/useHover';
 const fetch = require('node-fetch');
 
-export const SelectWeapon = React.memo(({ handleEquipmentChange, equipmentList, equippedGear, setEquippedGear }) => {
+export const SelectWeapon = React.memo(({ handleEquipmentChange, equipmentList, equippedGear }) => {
 
 	// NEED equipmentList for loading weapon options (contains names + id's)
 	// NEED handleEquipmentChange for equippingGear after a select
