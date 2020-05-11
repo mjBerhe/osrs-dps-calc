@@ -50,6 +50,8 @@ import { SelectGlove } from './dpsComponents/SelectEquipment/SelectGlove';
 import { SelectNeck } from './dpsComponents/SelectEquipment/SelectNeck';
 import { SelectRing } from './dpsComponents/SelectEquipment/SelectRing';
 import { SelectAmmo } from './dpsComponents/SelectEquipment/SelectAmmo';
+
+import double_swords from './images/Misc/double_swords.png';
 const fetch = require('node-fetch');
 
 export default function DpsTool() {
@@ -273,6 +275,8 @@ export default function DpsTool() {
 
 	const [dps2, setDps2] = useState(null);
 
+	document.title = 'OSRS DPS Calc'
+
 	// for the initial fetch of all equipment lists and monster list
 	// WOULD LIKE TO DO SOMETHING ABOUT THE LOADING TIME
 	// NEED TO HAVE A CATCH ERROR AS I RANDOMELY GET ERRORS AT POSITION 0?
@@ -490,7 +494,9 @@ export default function DpsTool() {
 	return (
 		<div className="grid-container">
 			<div className="title">
+				<img src={double_swords} alt=""/>
 				<h1>OSRS DPS Calculator</h1>
+				<img src={double_swords} alt=""/>
 			</div>
 
 			<div className="second-row-container">

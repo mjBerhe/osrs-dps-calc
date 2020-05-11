@@ -45,7 +45,8 @@ h6 {
 
 body {
     height: 100%;
-    background-image: url("images/Misc/HydraWallpaper.png");
+    background-image: url("images/Misc/background1.jfif");
+    /*background: #94DED4;*/
     margin: 0 10% 0 10%;
 }
 
@@ -74,6 +75,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 1px solid black;
 }
 
 .second-row-container {
@@ -84,6 +86,7 @@ body {
     display: grid;
     grid-template-columns: minmax(240px, 1fr) minmax(375px, 1fr);
     grid-template-rows: 0;
+    border: 1px solid black;
 }
 
 /*---------------------------------------TOP LEFT SECTION---------------------------------------*/
@@ -290,6 +293,7 @@ body {
 /*---------------------------------------TOP RIGHT SECTION---------------------------------------*/
 
 .monster-and-outputs-container {
+    background-color: yellow;
     padding: 0 5% 0 5%;
     grid-column: 2/3;
     display: grid;
@@ -562,6 +566,9 @@ body {
     display: grid;
     grid-template-columns: minmax(0.01fr, 1fr) minmax(75px, 0.2fr) 0fr 0.2fr 0.2fr 140px minmax(10px, 1fr);
     grid-template-rows: repeat(5, 60px);
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
 }
 
 .equipment-select2 {
@@ -572,6 +579,9 @@ body {
     display: grid;
     grid-template-columns: minmax(0.01fr, 1fr) minmax(75px, 0.2fr) 0.5fr 0.5fr 0.5fr 140px minmax(10px, 1fr);
     grid-template-rows: repeat(5, 60px);
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
 }
 
 .armor-set-stats {
