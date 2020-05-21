@@ -99,7 +99,7 @@ export const SelectAttackStyle = ({ equippedGear, userStats, setUserStats }) => 
 		bladed_staves: [bladed_staves1, bladed_staves2, bladed_staves3, bladed_staves4, bladed_staves5],
 		blunt_weapons: [blunt_weapons1, blunt_weapons2, blunt_weapons3],
 		bows: [bows1, bows2, bows3],
-		bulwark: [bulwark1, bulwark2],
+		bulwarks: [bulwark1, bulwark2],
 		chinchompas: [chinchompas1, chinchompas2, chinchompas3],
 		claws: [claws1, claws2, claws3, claws4],
 		crossbows: [crossbows1, crossbows2, crossbows3],

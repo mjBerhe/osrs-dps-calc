@@ -19,7 +19,7 @@ export const SlayerCheck = ({ userStats, setUserStats, userStats2, setUserStats2
 
 	return (
 		<div className="slayer-check">
-			<img src={SlayerHelm} alt="slayer helm" ref={ref}/>
+			<img src={SlayerHelm} alt="slayer helm" className="misc-img" ref={ref}/>
 			<input type="checkbox" className="checkbox-class" onChange={handleChange}/>
 			{hovered && 
 				<div className="slayer-hover"><h5>Slayer Task</h5></div>}

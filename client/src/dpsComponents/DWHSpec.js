@@ -30,7 +30,7 @@ export const DWHSpec = ({ currentMonster, setCurrentMonster, currentMonsterCopy}
 
 	return (
 		<div className='DWH-spec'>
-			<img src={DWH} alt="dragon warhammer" ref={ref}/>
+			<img src={DWH} alt="dragon warhammer" className="misc-img" ref={ref}/>
 			<input type="number" name='DWH-count' onChange={handleChange}/>
 			{hovered && 
 				<div className="DWH-spec-hover">

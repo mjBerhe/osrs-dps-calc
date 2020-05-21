@@ -35,7 +35,7 @@ import mprayer2 from "../images/Prayers/magic/mprayer2.png";
 import mprayer3 from "../images/Prayers/magic/mprayer3.png";
 import mprayer4 from "../images/Prayers/magic/mprayer4.png";
 
-export const StatBoosters = ({ userStats, handleStatsChange }) => {
+export const StatBoosters = ({ userStats, setUserStats, setUserStats2 }) => {
 
 	const attPotions = [empty, att1, att2, att3, nmz, cox, cox, cox];
 	const strPotions = [empty, str1, str2, str3, nmz, cox, cox, cox];
@@ -46,12 +46,24 @@ export const StatBoosters = ({ userStats, handleStatsChange }) => {
 	const rngPrayers = [rprayer0, rprayer1, rprayer2, rprayer3, rprayer4];
 	const magPrayers = [mprayer0, mprayer1, mprayer2, mprayer3, mprayer4];
 
+	const handleChange = (e) => {
+		e.persist();
+		setUserStats(prevStats => ({
+			...prevStats,
+			[e.target.name]: parseFloat(e.target.value, 10),
+		}));
+		setUserStats2(prevStats2 => ({
+			...prevStats2,
+			[e.target.name]: parseFloat(e.target.value, 10),
+		}));
+	}
+
 	return(
 		<div className="potions-prayers">
 			<div className="potion-class">
 				<div className="potion-item">
 					<img src={attPotions[userStats.attPotion]} alt="chosen attack potion"/>
-					<select name="attPotion" onChange={handleStatsChange} defaultValue={0}>
+					<select name="attPotion" onChange={handleChange} defaultValue={0}>
 						<option value={0} hidden>Select Attack Potion</option>
 						<option value={0}>None</option>
 						<option value={1}>Attack Potion</option>
@@ -66,7 +78,7 @@ export const StatBoosters = ({ userStats, handleStatsChange }) => {
 
 				<div className="potion-item">
 					<img src={strPotions[userStats.strPotion]} alt="chosen strength potion"/>
-					<select name="strPotion" onChange={handleStatsChange} defaultValue={0}>
+					<select name="strPotion" onChange={handleChange} defaultValue={0}>
 						<option value={0} hidden>Select Strength Potion</option>
 						<option value={0}>None</option>
 						<option value={1}>Strength Potion</option>
@@ -81,7 +93,7 @@ export const StatBoosters = ({ userStats, handleStatsChange }) => {
 
 				<div className="potion-item">
 					<img src={rngPotions[userStats.rngPotion]} alt="chosen range potion"/>
-					<select name="rngPotion" onChange={handleStatsChange} defaultValue={0}>
+					<select name="rngPotion" onChange={handleChange} defaultValue={0}>
 						<option value={0} hidden>Select Range Potion</option>
 						<option value={0}>None</option>
 						<option value={1}>Ranging Potion</option>
@@ -95,7 +107,7 @@ export const StatBoosters = ({ userStats, handleStatsChange }) => {
 
 				<div className="potion-item">
 					<img src={magPotions[userStats.magPotion]} alt="chosen magic potion"/>
-					<select name="magPotion" onChange={handleStatsChange} defaultValue={0}>
+					<select name="magPotion" onChange={handleChange} defaultValue={0}>
 						<option value={0} hidden>Select Magic Potion</option>
 						<option value={0}>None</option>
 						<option value={1}>Magic Potion</option>
@@ -114,7 +126,7 @@ export const StatBoosters = ({ userStats, handleStatsChange }) => {
 					<div className='prayer-pic-container'>
 						<img src={attPrayers[userStats.attPrayer]} alt="chosen attack prayer"/>
 					</div>
-					<select name="attPrayer" onChange={handleStatsChange} defaultValue={0}>
+					<select name="attPrayer" onChange={handleChange} defaultValue={0}>
 						<option value={0} hidden>Select Attack Prayer</option>
 						<option value={0}>None</option>
 						<option value={1}>Clarity of Thought</option>
@@ -129,7 +141,7 @@ export const StatBoosters = ({ userStats, handleStatsChange }) => {
 					<div className='prayer-pic-container'>
 						<img src={strPrayers[userStats.strPrayer]} alt="chosen strength prayer"/>
 					</div>
-					<select name="strPrayer" onChange={handleStatsChange} defaultValue={0}>
+					<select name="strPrayer" onChange={handleChange} defaultValue={0}>
 						<option value={0} hidden>Select Strength Prayer</option>
 						<option value={0}>None</option>
 						<option value={1}>Burst of Strength</option>
@@ -144,7 +156,7 @@ export const StatBoosters = ({ userStats, handleStatsChange }) => {
 					<div className='prayer-pic-container'>
 						<img src={rngPrayers[userStats.rngPrayer]} alt="chosen range prayer"/>
 					</div>
-					<select name="rngPrayer" onChange={handleStatsChange} defaultValue={0}>
+					<select name="rngPrayer" onChange={handleChange} defaultValue={0}>
 						<option value={0} hidden>Select Range Prayer</option>
 						<option value={0}>None</option>
 						<option value={1}>Sharp Eye</option>
@@ -158,7 +170,7 @@ export const StatBoosters = ({ userStats, handleStatsChange }) => {
 					<div className='prayer-pic-container'>
 						<img src={magPrayers[userStats.magPrayer]} alt="chosen range prayer"/>
 					</div>
-					<select name="magPrayer" onChange={handleStatsChange} defaultValue={0}>
+					<select name="magPrayer" onChange={handleChange} defaultValue={0}>
 						<option value={0} hidden>Select Magic Prayer</option>
 						<option value={0}>None</option>
 						<option value={1}>Mystic Will</option>

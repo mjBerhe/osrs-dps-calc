@@ -29,7 +29,9 @@ import { checkTomeOfFire } from './checkGear/checkTomeOfFire';
 
 import { LvlInputs }  from './dpsComponents/LvlInputs';
 import { OutputComparison } from './dpsComponents/OutputComparison';
+import { OutputComparisonSpec } from './dpsComponents/OutputComparisonSpec';
 import { SelectMonster } from './dpsComponents/SelectMonster';
+import { SpecialAttack } from './dpsComponents/SpecialAttack';
 import { SlayerCheck } from './dpsComponents/SlayerCheck'
 import { DWHSpec } from './dpsComponents/DWHSpec';
 import { DisplayStats } from './dpsComponents/DisplayStats';
@@ -51,7 +53,7 @@ import { SelectNeck } from './dpsComponents/SelectEquipment/SelectNeck';
 import { SelectRing } from './dpsComponents/SelectEquipment/SelectRing';
 import { SelectAmmo } from './dpsComponents/SelectEquipment/SelectAmmo';
 
-import double_swords from './images/Misc/double_swords.png';
+import black_sword from './images/Misc/black_sword_png.png';
 const fetch = require('node-fetch');
 
 export default function DpsTool() {
@@ -259,23 +261,37 @@ export default function DpsTool() {
 		isTomeOfFire: false,
 	})
 
+	const [specialAttack, setSpecialAttack] = useState({
+		table: false,
+		maxHit: null,
+		accuracy: null,
+	});
+
+	const [specialAttack2, setSpecialAttack2] = useState({
+		table: false,
+		maxHit: null,
+		accuracy: null,
+	});
+
 	// finalOutput & finalOutput2 contains useful information for calculating DPS
 	const [finalOutput, setFinalOutput] = useState({
 		maxHit: null,
 		accuracy: null,
+		maxAttRoll: null,
+		maxDefRoll: null,
 	});
 
 	const [finalOutput2, setFinalOutput2] = useState({
 		maxHit: null,
 		accuracy: null,
+		maxAttRoll: null,
+		maxDefRoll: null,
 	});
 
 	// dps & dps2 contains the final dps 
 	const [dps, setDps] = useState(null);
 
 	const [dps2, setDps2] = useState(null);
-
-	document.title = 'OSRS DPS Calc'
 
 	// for the initial fetch of all equipment lists and monster list
 	// WOULD LIKE TO DO SOMETHING ABOUT THE LOADING TIME
@@ -392,6 +408,7 @@ export default function DpsTool() {
 		// for set 1
 		const effectiveAttLvl = calcEffectiveAttLvl(userStats, checkBonus);
 		const effectiveStrLvl = calcEffectiveStrLvl(userStats, checkBonus);
+
 		const maxAttRoll = calcMaxAttRoll(userStats, effectiveAttLvl, equippedGear, checkBonus, currentMonster);
 		const maxDefRoll = calcMaxDefRoll(userStats, currentMonster);
 
@@ -401,11 +418,14 @@ export default function DpsTool() {
 		setFinalOutput({
 			maxHit: maxHit,
 			accuracy: accuracy,
+			maxAttRoll: maxAttRoll,
+			maxDefRoll: maxDefRoll,
 		});
 
 		// for set 2
 		const effectiveAttLvl2 = calcEffectiveAttLvl(userStats2, checkBonus2);
 		const effectiveStrLvl2 = calcEffectiveStrLvl(userStats2, checkBonus2);
+		
 		const maxAttRoll2 = calcMaxAttRoll(userStats2, effectiveAttLvl2, equippedGear2, checkBonus2);
 		const maxDefRoll2 = calcMaxDefRoll(userStats2, currentMonster);
 		
@@ -415,9 +435,11 @@ export default function DpsTool() {
 		setFinalOutput2({
 			maxHit: maxHit2,
 			accuracy: accuracy2,
+			maxAttRoll: maxAttRoll2,
+			maxDefRoll: maxDefRoll2,
 		});
 
-		//console.log(equippedGear.weapon)
+		console.log(finalOutput, finalOutput2)
 
 	}, [userStats, userStats2, currentMonster])
 
@@ -440,24 +462,9 @@ export default function DpsTool() {
 		const dps2 = (accuracy2 * (maxHit2/2)) / (attSpeed2*0.6);
 		setDps2(dps2);
 
-		console.log(maxHit, accuracy, attSpeed, userStats.chosenSpell, equippedGear.weapon)
+		//console.log(maxHit, accuracy, attSpeed, userStats.chosenSpell, equippedGear.weapon)
 
 	}, [finalOutput, finalOutput2])
-
-	// event handler for Lvl inputs
-	// updating userStats whenever called
-	const handleStatsChange = useCallback((e) => {
-		e.persist();
-
-		setUserStats(prevStats => ({
-			...prevStats,
-			[e.target.name]: parseFloat(e.target.value, 10),
-		}));
-		setUserStats2(prevStats => ({
-			...prevStats,
-			[e.target.name]: parseFloat(e.target.value, 10),
-		}));
-	}, [])
 
 	// updates equippedGear whenever a new gear piece is chosen
 	// function only renders when equipmentList changes (should only be once)
@@ -489,28 +496,28 @@ export default function DpsTool() {
 		})
 	}, [equipmentList])
 
-
-
 	return (
 		<div className="grid-container">
 			<div className="title">
-				<img src={double_swords} alt=""/>
+				<img src={black_sword} alt="sword logo"/>
 				<h1>OSRS DPS Calculator</h1>
-				<img src={double_swords} alt=""/>
+				<img src={black_sword} alt="sword logo"/>
 			</div>
 
 			<div className="second-row-container">
 				<div className="stat-block-container">
 					<h2 className="stat-title">Stats & Boosts</h2>
-					<LvlInputs handleStatsChange={handleStatsChange} userStats={userStats}/>
-					<StatBoosters handleStatsChange={handleStatsChange} userStats={userStats}/>
+					<LvlInputs userStats={userStats} setUserStats={setUserStats} setUserStats2={setUserStats2}/>
+					<StatBoosters userStats={userStats} setUserStats={setUserStats} setUserStats2={setUserStats2}/>
 				</div>
 
 				<div className="monster-and-outputs-container">
 					<h2 className="final-title">Armor Set 1 vs Armor Set 2</h2>
-					<OutputComparison finalOutput={finalOutput} finalOutput2={finalOutput2} dps={dps} dps2={dps2} equippedGear={equippedGear} equippedGear2={equippedGear2} userStats={userStats} userStats2={userStats2} currentMonster={currentMonster}/>
+					{specialAttack.table && <OutputComparisonSpec finalOutput={finalOutput} finalOutput2={finalOutput2} dps={dps} dps2={dps2} equippedGear={equippedGear} equippedGear2={equippedGear2} userStats={userStats} userStats2={userStats2} currentMonster={currentMonster} specialAttack={specialAttack} specialAttack2={specialAttack2}/>}
+					{!specialAttack.table && <OutputComparison finalOutput={finalOutput} finalOutput2={finalOutput2} dps={dps} dps2={dps2} equippedGear={equippedGear} equippedGear2={equippedGear2} userStats={userStats} userStats2={userStats2} currentMonster={currentMonster}/>}
 					<SelectMonster monstersList={monstersList} setCurrentMonster={setCurrentMonster} setCurrentMonsterCopy={setCurrentMonsterCopy}/>
 					<div className="misc-row">
+						<SpecialAttack setSpecialAttack={setSpecialAttack} setSpecialAttack2={setSpecialAttack2} equippedGear={equippedGear} equippedGear2={equippedGear2} finalOutput={finalOutput} finalOutput2={finalOutput2} userStats={userStats} userStats2={userStats2}/>
 						<SlayerCheck userStats={userStats} setUserStats={setUserStats} userStats2={userStats2} setUserStats2={setUserStats2}/>
 						<DWHSpec currentMonster={currentMonster} setCurrentMonster={setCurrentMonster} currentMonsterCopy={currentMonsterCopy}/>
 					</div>
@@ -581,41 +588,36 @@ export default function DpsTool() {
 // 	"stats": {
 //             "attStab": 0,
 //             "attSlash": 0,
-//             "attCrush": 0,
+//             "attCrush": 110,
 //             "attMagic": 0,
 //             "attRanged": 0,
-//             "defStab": 0,
-//             "defSlash": 0,
-//             "defCrush": 0,
+//             "defStab": 141,
+//             "defSlash": 145,
+//             "defCrush": 145,
 //             "defMagic": 0,
-//             "defRanged": 0,
-//             "strBonus": 0,
+//             "defRanged": 148,
+//             "strBonus": 38,
 //             "rngStrBonus": 0,
 //             "magBonus": 0,
 //             "prayBonus": 0,
-//             "slot": "weapon"
+//             "slot": "2h"
 //         },
 //         "stances": {
 //             "stance0": {
-//                 "cmbStyle": "punch",
+//                 "cmbStyle": "pummel",
 //                 "attType": "crush",
 //                 "attStyle": "accurate"
 //             },
 //             "stance1": {
-//                 "cmbStyle": "kick",
-//                 "attType": "crush",
-//                 "attStyle": "aggressive"
-//             },
-//             "stance2": {
 //                 "cmbStyle": "block",
-//                 "attType": "crush",
-//                 "attStyle": "defensive"
-//             }
+//                 "attType": "null",
+//                 "attStyle": "null"
+//             },
 //         },
-//         "id": 100000,
-//         "name": "None",
+//         "id": 21015,
+//         "name": "Dinh's bulwark",
 //         "equipableByPlayer": true,
 //         "equipableWeapon": true,
-//         "attSpeed": 4,
-//         "wepType": "unarmed",
+//         "attSpeed": 7,
+//         "wepType": "bulwarks",
 // })
