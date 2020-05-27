@@ -138,7 +138,7 @@ body {
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(2, 1fr);
     align-items: center;
-    margin: 5px 0 0 0;
+    margin: 0;
 }
 
 .lvl-inputs-class img {
@@ -175,7 +175,7 @@ body {
     justify-content: flex-end;
     align-items: center;
     height: 30px;
-    margin: 0 5px 0 0;
+    margin: 7px 5px 0 0;
 }
 
 .strength-hover {
@@ -379,12 +379,14 @@ body {
 }
 
 .monster-container {
+    /*background: yellow;*/
     grid-row: 3/4;
     grid-column: 1/2;
     border: ;
-    margin: 5px;
+    margin: 0px;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .monster-select {
@@ -395,10 +397,12 @@ body {
 }
 
 .misc-row {
-    background:;
+    /*background: green;*/
     grid-row: 4/5;
+    grid-column: 1/2;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .checkbox-class {
@@ -416,7 +420,12 @@ body {
 }
 
 .special-attack-hover {
-
+    position: absolute;
+    background: white;
+    opacity: 0.6;
+    width: 120px;
+    margin: -23px 0 0 0;
+    border-radius: 4px;
 }
 
 .slayer-check {
@@ -430,7 +439,7 @@ body {
     background: white;
     opacity: 0.6;
     width: 80px;
-    margin: -18px 0 0 15px;
+    margin: -23px 0 0 0;
     border-radius: 4px;
 }
 
@@ -453,7 +462,7 @@ body {
     background: white;
     opacity: 0.6;
     width: 120px;
-    margin: -18px 0 0 23px;
+    margin: -23px 0 0 0;
     border-radius: 4px;
 }
 

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { calcHitChance } from '../formulas/accuracy';
+import useHover from '../hooks/useHover';
 import SpecImg from '../images/Misc/Special Attack.png'
 
 export const SpecialAttack = ({ setSpecialAttack, setSpecialAttack2, equippedGear, equippedGear2, finalOutput, finalOutput2, userStats, userStats2 }) => {
@@ -477,10 +478,17 @@ export const SpecialAttack = ({ setSpecialAttack, setSpecialAttack2, equippedGea
 		}
 	}, [finalOutput2])
 
+	const [ref, hovered] = useHover();
+
 	return (
 		<div className='special-attack'>
-			<img src={SpecImg} alt="" className="misc-img"/>
+			<img src={SpecImg} alt="" className="misc-img" ref={ref}/>
 			<input type="checkbox" className="checkbox-class" onChange={handleChange}/>
+			{hovered && 
+				<div className="special-attack-hover">
+					<h5>Show Special Attack</h5>
+				</div>
+			}
 		</div>
 	)
 }

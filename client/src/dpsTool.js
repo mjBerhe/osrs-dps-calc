@@ -425,7 +425,7 @@ export default function DpsTool() {
 		// for set 2
 		const effectiveAttLvl2 = calcEffectiveAttLvl(userStats2, checkBonus2);
 		const effectiveStrLvl2 = calcEffectiveStrLvl(userStats2, checkBonus2);
-		
+
 		const maxAttRoll2 = calcMaxAttRoll(userStats2, effectiveAttLvl2, equippedGear2, checkBonus2);
 		const maxDefRoll2 = calcMaxDefRoll(userStats2, currentMonster);
 		
@@ -573,15 +573,15 @@ export default function DpsTool() {
 	)
 }
 
-// db.monsters.update({ id: 2044 },
+// db.monsters.update({ id: 965 },
 // {
 // 	$set: {
-// 		name: 'Zulrah (Tanzanite)'
+// 		name: 'Kalphite queen (Phase 2)'
 // 	}
 // })
 
 // db.monsters.remove({
-// 	name: 'Zulrah (green)'
+// 	name: 'Kalphite Queen (333)'
 // })
 
 // db.weapons.insert({

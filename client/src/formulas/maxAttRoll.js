@@ -36,6 +36,18 @@ export function calcMaxAttRoll(userStats, effectiveAttLvl, equippedGear, checkBo
 				maxAttRoll = maxAttRoll*tBowMultiplier;
 			}
 		}
+		// if magic def is capped at 140
+		// if (checkBonus.isTbow && currentMonster) {
+		// 	let magic =  currentMonster.stats.magLvl;
+		// 	if (magic >= 140) {
+		// 		magic = 140;
+		// 		const tbowMultiplier = Math.floor((140 + Math.trunc((magic*3-10)/100) - Math.trunc((Math.pow(((magic*3/10)-100), 2))/100))/100);
+		// 		maxAttRoll = maxAttRoll*tbowMultiplier;
+		// 	} else {
+		// 		const tbowMultiplier = Math.floor((140 + Math.trunc((magic*3-10)/100) - Math.trunc((Math.pow(((magic*3/10)-100), 2))/100))/100);
+		// 		maxAttRoll = maxAttRoll*tbowMultiplier;
+		// 	}
+		// }
 		return Math.floor(maxAttRoll);
 
 	// else if magic
