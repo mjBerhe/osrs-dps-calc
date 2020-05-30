@@ -138,6 +138,11 @@ export function calcMaxHit(userStats, effectiveStrLvl, equippedGear, checkBonus,
 		if (checkBonus.isObbyWep && checkBonus.isObbyNeck) {
 			maxHit = Math.floor(maxHit*1.2);
 		}
+		if (checkBonus.isScythe) {
+			const halfHit = Math.floor(maxHit/2);
+			const quarterHit = Math.floor(halfHit/2);
+			maxHit = Math.floor(maxHit) + halfHit + quarterHit;
+		}
 		return Math.floor(maxHit);
 	}
 }

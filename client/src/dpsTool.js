@@ -26,6 +26,7 @@ import { checkObbyWep } from './checkGear/checkObbyWep';
 import { checkObbyNeck } from './checkGear/checkObbyNeck';
 import { checkSmokeStaff } from './checkGear/checkSmokeStaff';
 import { checkTomeOfFire } from './checkGear/checkTomeOfFire';
+import { checkScythe } from './checkGear/checkScythe';
 
 import { LvlInputs }  from './dpsComponents/LvlInputs';
 import { OutputComparison } from './dpsComponents/OutputComparison';
@@ -361,6 +362,7 @@ export default function DpsTool() {
 		checkObbyNeck(equippedGear, checkBonus, setCheckBonus);
 		checkSmokeStaff(equippedGear, setCheckBonus);
 		checkTomeOfFire(equippedGear, setCheckBonus);
+		checkScythe(equippedGear, setCheckBonus);
 
 		// for set 2
 		const totalBonusObject2 = calcTotalBonuses(equippedGear2);			
@@ -399,6 +401,7 @@ export default function DpsTool() {
 		checkObbyNeck(equippedGear2, checkBonus2, setCheckBonus2);
 		checkSmokeStaff(equippedGear2, setCheckBonus2);
 		checkTomeOfFire(equippedGear2, setCheckBonus2);
+		checkScythe(equippedGear2, setCheckBonus2);
 
 	}, [equippedGear, equippedGear2, currentMonster])
 
