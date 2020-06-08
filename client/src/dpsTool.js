@@ -503,7 +503,7 @@ export default function DpsTool() {
 		<div className="grid-container">
 			<div className="title">
 				<img src={black_sword} alt="sword logo"/>
-				<h1>OSRS DPS Calculator</h1>
+				<h1>OSRS DPS Calculator!</h1>
 				<img src={black_sword} alt="sword logo"/>
 			</div>
 
