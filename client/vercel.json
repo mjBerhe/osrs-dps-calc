@@ -1,0 +1,7 @@
+{
+	"name": "my-monogdb-api",
+	"version": 19,
+	"env": {
+		"MONGODB_URI": "@my-mongodb-uri"
+	}
+}

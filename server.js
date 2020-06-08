@@ -35,7 +35,7 @@ app.use('/api/monsters', monsters);
 
 
 // Connect to MongoDB
-const mongoDB = 'mongodb+srv://Berhe2:matthewberhe123@berhecluster-bp54h.mongodb.net/item_database?retryWrites=true&w=majority';
+// const mongoDB = 'mongodb+srv://Berhe2:matthewberhe123@berhecluster-bp54h.mongodb.net/item_database?retryWrites=true&w=majority';
 // const mongoDB = 'mongodb://127.0.0.1/item_database';
 
 mongoose
